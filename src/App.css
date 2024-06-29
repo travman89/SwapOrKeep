@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "TradeWinds";
+  src:local("TradeWinds-Regular") format('truetype'),
+  url('./assets/fonts/TradeWinds-Regular.ttf') format('truetype')
+}
