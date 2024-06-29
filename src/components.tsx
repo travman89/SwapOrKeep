@@ -78,11 +78,12 @@ const Button = styled.button`
   text-align: center;
   font-size: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s;
+  transition: all 0.5s;
   &:active {
     transform: scale(0.97);
   }
   font-family: "TradeWinds";
+  opacity: ${(props) => (props.disabled ? 0 : 1)};
 `;
 
 const TableContainer = styled.div`

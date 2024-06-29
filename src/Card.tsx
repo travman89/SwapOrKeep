@@ -38,11 +38,11 @@ const CardFace = ({
   if (value < 9) {
     return (
       <SuitContainer>
-        {NumberedCards[value].map((row, i) => (
+        {NumberedCards[value].map((row) => (
           <SuitRow>
             {Array(row)
               .fill("")
-              .map((symbol, j) => (
+              .map(() => (
                 <Suit red={red}>{suit}</Suit>
               ))}
           </SuitRow>

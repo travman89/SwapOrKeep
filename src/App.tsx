@@ -30,6 +30,7 @@ function App() {
   const [playerTurn, setPlayerTurn] = useState(0);
   const [playerCards, setPlayerCards] = useState<number[]>([]);
   const [hideCards, setHideCards] = useState(true);
+  const [hideButtons, setHideButtons] = useState(false);
   const [cardFaceDown, setCardFaceDown] = useState(true);
   const [turnStep, setTurnStep] = useState<Steps>(Steps.SWAP);
   const [swapped, setSwapped] = useState(false);
@@ -81,6 +82,7 @@ function App() {
   const deal = () => {
     setHideCards(true);
     setTurnStep(Steps.SWAP);
+    setHideButtons(true);
     setMessage(`${playerNames[playerTurn]}'s Turn`);
     setTimeout(() => {
       if (playerTurn === 0) {
@@ -96,6 +98,7 @@ function App() {
 
     setTimeout(() => {
       setHideCards(false);
+      setHideButtons(false);
     }, 700);
   };
 
@@ -160,8 +163,14 @@ function App() {
               <ButtonContainer>
                 {turnStep === Steps.SWAP && (
                   <>
-                    <Button onClick={keep}> Keep </Button>
-                    <Button onClick={swap}> Swap </Button>
+                    <Button onClick={keep} disabled={hideButtons}>
+                      {" "}
+                      Keep{" "}
+                    </Button>
+                    <Button onClick={swap} disabled={hideButtons}>
+                      {" "}
+                      Swap{" "}
+                    </Button>
                   </>
                 )}
                 {turnStep === Steps.REVEAL && (
