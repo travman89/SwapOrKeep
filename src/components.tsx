@@ -257,7 +257,7 @@ const Ace = styled.div`
   margin: 0;
   width: 200px;
   height: 200px;
-  background-image: url("../public/ace_optimized.png");
+  background-image: url("../ace_optimized.png");
 `;
 
 const Jack = styled.div`
@@ -266,7 +266,7 @@ const Jack = styled.div`
   width: 180px;
   height: 180px;
   border-radius: 20px;
-  background-image: url("../public/jack_optimized.png");
+  background-image: url("../jack_optimized.png");
 `;
 
 const Queen = styled.div`
@@ -275,7 +275,7 @@ const Queen = styled.div`
   width: 180px;
   height: 180px;
   border-radius: 20px;
-  background-image: url("../public/queen_optimized.png");
+  background-image: url("../queen_optimized.png");
 `;
 
 const King = styled.div`
@@ -284,7 +284,7 @@ const King = styled.div`
   width: 180px;
   height: 180px;
   border-radius: 20px;
-  background-image: url("../public/king_optimized.png");
+  background-image: url("../king_optimized.png");
 `;
 
 export {
