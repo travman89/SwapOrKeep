@@ -154,10 +154,10 @@ const PlayerSquare = styled.div`
 `;
 
 const Player1 = styled(PlayerSquare)`
-  background-image: url("../public/pirate1.jpeg");
+  background-image: url("../pirate1.jpeg");
 `;
 const Player2 = styled(PlayerSquare)`
-  background-image: url("../public/pirate2.jpeg");
+  background-image: url("../pirate2.jpeg");
 `;
 
 const PlayerName = styled.input`
