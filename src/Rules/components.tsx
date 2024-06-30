@@ -34,6 +34,7 @@ const ScrollImage = styled.img`
   top: 0;
   left: 0;
   z-index: -1;
+  filter: drop-shadow(10px 20px 4px rgba(0, 0, 0, 0.4));
 `;
 
 const RulesHeading = styled.h1`

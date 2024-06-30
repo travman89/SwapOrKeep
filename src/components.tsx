@@ -85,7 +85,7 @@ const ScoreboardSection = styled.div`
   margin-top: 20px;
   position: absolute;
   width: calc(100%);
-  height: 27vh;
+  height: 16vw;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -93,8 +93,8 @@ const ScoreboardSection = styled.div`
 
 const PlayerSquare = styled.div`
   background-size: cover;
-  height: calc(25vh - 20px);
-  width: calc(25vh - 20px);
+  height: calc(15vw - 20px);
+  width: calc(15vw - 20px);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -154,7 +154,8 @@ const MessageContainer = styled.div`
   padding: 10px;
   border-radius: 10px;
   height: fit-content;
-  width: 500px;
+  min-width: 400px;
+  max-width: 500px;
 `;
 
 const Message = styled.p`
