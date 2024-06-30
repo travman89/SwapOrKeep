@@ -14,10 +14,12 @@ import {
   Score,
   Message,
   MessageContainer,
+  NewGameButton,
+  RulesButton,
 } from "./components";
 import { Card } from "./Card";
 import "./App.css";
-
+import { Rules } from "./Rules";
 enum Steps {
   DEAL = "deal",
   REVEAL = "reveal",
@@ -26,7 +28,7 @@ enum Steps {
 }
 function App() {
   const { deck, newGame } = useDeck();
-  const [deckPosition, setDeckPosition] = useState(0);
+  const [deckPosition, setDeckPosition] = useState(50);
   const [playerTurn, setPlayerTurn] = useState(0);
   const [playerCards, setPlayerCards] = useState<number[]>([]);
   const [hideCards, setHideCards] = useState(true);
@@ -38,13 +40,15 @@ function App() {
   const [playerNames, setPlayerNames] = useState(["James", "Daddy"]);
   const [playerScores, setPlayerScore] = useState([0, 0]);
   const [message, setMessage] = useState(`${playerNames[0]}'s Turn`);
-
+  const [showVictoryTile, setShowVictoryTile] = useState(false);
+  const [showRules, setShowRules] = useState(false);
   const resetGame = () => {
     setPlayerTurn(0);
     setPlayerCards([]);
     setDeckPosition(0);
     setMessage(`${playerNames[0]}'s Turn`);
     setPlayerScore([0, 0]);
+    setShowVictoryTile(false);
     newGame();
   };
 
@@ -52,29 +56,33 @@ function App() {
     if (playerCards[0] && playerCards[1]) {
       const playerOneValue = (playerCards[0] - 1) % 13;
       const playerTwoValue = (playerCards[1] - 1) % 13;
-      if (hasSwapped) {
-        if (playerOneValue < playerTwoValue) {
-          setMessage(`${playerNames[0]} Wins!`);
-          setPlayerScore([playerScores[0] + 1, playerScores[1]]);
-        } else if (playerTwoValue < playerOneValue) {
-          setMessage(`${playerNames[1]} Wins!`);
-          setPlayerScore([playerScores[0], playerScores[1] + 1]);
-        }
-      } else {
-        if (playerOneValue > playerTwoValue) {
-          setMessage(`${playerNames[0]} Wins!`);
-          setPlayerScore([playerScores[0] + 1, playerScores[1]]);
-        } else if (playerTwoValue > playerOneValue) {
-          setMessage(`${playerNames[1]} Wins!`);
-          setPlayerScore([playerScores[0], playerScores[1] + 1]);
-        }
-      }
       if (playerOneValue === playerTwoValue) {
         setMessage("Tie!");
+      } else {
+        //TODO this feels unneccesarly complex. I need to look into debugging the card swap logic for calculating winners
+        if (hasSwapped) {
+          if (playerOneValue < playerTwoValue) {
+            setMessage(`${playerNames[0]} Wins!`);
+            setPlayerScore([playerScores[0] + 1, playerScores[1]]);
+          } else if (playerTwoValue < playerOneValue) {
+            setMessage(`${playerNames[1]} Wins!`);
+            setPlayerScore([playerScores[0], playerScores[1] + 1]);
+          }
+        } else {
+          if (playerOneValue > playerTwoValue) {
+            setMessage(`${playerNames[0]} Wins!`);
+            setPlayerScore([playerScores[0] + 1, playerScores[1]]);
+          } else if (playerTwoValue > playerOneValue) {
+            setMessage(`${playerNames[1]} Wins!`);
+            setPlayerScore([playerScores[0], playerScores[1] + 1]);
+          }
+        }
       }
       if (deckPosition >= 50) {
         setTimeout(() => {
+          setMessage("Game Over");
           setTurnStep(Steps.NEW_GAME);
+          setShowVictoryTile(true);
         }, 500);
       }
     }
@@ -127,6 +135,7 @@ function App() {
   };
 
   useEffect(() => {
+    setShowVictoryTile(false);
     deal();
   }, [deck]);
 
@@ -138,9 +147,28 @@ function App() {
     setPlayerNames([playerNames[0], event.target.value]);
   };
 
+  const getVictoryMessage = () => {
+    if (playerScores[0] === playerScores[1]) {
+      return "We have a tie!";
+    } else {
+      return playerScores[0] > playerScores[1]
+        ? `${playerNames[0]} is the winner!`
+        : `${playerNames[1]} is the winner!`;
+    }
+  };
+
+  const showRulesScreen = () => {
+    setShowRules(true);
+  };
+  const hideRulesScreen = () => {
+    setShowRules(false);
+  };
   return (
     <>
+      {showRules && <Rules hideRules={hideRulesScreen} />}
       <TableContainer>
+        <NewGameButton onClick={resetGame}> New Game </NewGameButton>
+        <RulesButton onClick={showRulesScreen}>Rules</RulesButton>
         <Table>
           {deck.length > 0 && (
             <>
@@ -194,9 +222,16 @@ function App() {
           </Player1>
           <Score>{playerScores[0]}</Score>
         </PlayerScoreContainer>
-        <MessageContainer>
-          <Message>{message}</Message>
-        </MessageContainer>
+        <div>
+          <MessageContainer>
+            <Message>{message}</Message>
+          </MessageContainer>
+          {showVictoryTile && (
+            <MessageContainer>
+              <Message>{getVictoryMessage()}</Message>
+            </MessageContainer>
+          )}
+        </div>
         <PlayerScoreContainer>
           <Score>{playerScores[1]}</Score>
           <Player2>
