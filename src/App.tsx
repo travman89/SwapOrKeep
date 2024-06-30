@@ -28,7 +28,7 @@ enum Steps {
 }
 function App() {
   const { deck, newGame } = useDeck();
-  const [deckPosition, setDeckPosition] = useState(50);
+  const [deckPosition, setDeckPosition] = useState(0);
   const [playerTurn, setPlayerTurn] = useState(0);
   const [playerCards, setPlayerCards] = useState<number[]>([]);
   const [hideCards, setHideCards] = useState(true);
