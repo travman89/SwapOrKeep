@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
   margin-top: 40px;
   min-height: 50px;
   @media only screen and (max-width: 639px) {
-    margin-top: 20px;
+    margin-top: 15px;
   }
 `;
 
@@ -48,6 +48,9 @@ const Button = styled.button`
   }
   font-family: "TradeWinds";
   opacity: ${(props) => (props.disabled ? 0 : 1)};
+  @media only screen and (max-width: 639px) {
+    height: 40px;
+  }
 `;
 
 const NewGameButton = styled(Button)`
@@ -55,7 +58,7 @@ const NewGameButton = styled(Button)`
   top: 20px;
   right: 10px;
   @media only screen and (max-width: 639px) {
-    top: 20px;
+    top: 10px;
     right: 10px;
   }
 `;
@@ -65,7 +68,7 @@ const RulesButton = styled(Button)`
   top: 92px;
   right: 10px;
   @media only screen and (max-width: 639px) {
-    top: 20px;
+    top: 10px;
     left: 10px;
   }
 `;
@@ -81,11 +84,12 @@ const TableContainer = styled.div`
     height: auto;
     box-sizing: border-box;
     display: inline-block;
-    margin-top: 100px;
+    margin-top: 65px;
   }
 `;
 
 const Table = styled.div`
+  display: inline-block;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   max-width: 95vw;
   max-height: 55vh;
@@ -103,7 +107,7 @@ const Table = styled.div`
   @media only screen and (max-width: 639px) {
     width: 100%;
     max-width: 100%;
-    height: calc(50vh - 100px);
+    height: auto;
     border-radius: none;
     background-color: transparent;
     background-image: none;
@@ -118,12 +122,13 @@ const ScoreboardSection = styled.div`
   width: 100%;
   margin-top: 20px;
   position: absolute;
-  position: absolute;
   bottom: 0;
   left: 0;
   box-sizing: border-box;
   @media only screen and (max-width: 639px) {
     flex-direction: column;
+    position: relative;
+    margin-top: 0px;
   }
 `;
 
