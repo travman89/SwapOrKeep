@@ -159,6 +159,7 @@ const PlayerScoreContainer = styled.div`
     &:last-child {
       order: 3;
     }
+    padding: 5px;
   }
 `;
 
@@ -244,6 +245,7 @@ const MessageContainer = styled.div`
     min-width: calc(100% - 40px);
     margin: 5px auto;
     order: 1;
+    padding: 5px;
   }
 `;
 
