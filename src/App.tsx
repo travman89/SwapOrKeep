@@ -42,9 +42,12 @@ function App() {
   const [message, setMessage] = useState(`${playerNames[0]}'s Turn`);
   const [showVictoryTile, setShowVictoryTile] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [initialDeal, setInitialDeal] = useState<number[]>([]);
+
   const resetGame = () => {
     setPlayerTurn(0);
     setPlayerCards([]);
+    setInitialDeal([]);
     setDeckPosition(0);
     setMessage(`${playerNames[0]}'s Turn`);
     setPlayerScore([0, 0]);
@@ -59,23 +62,12 @@ function App() {
       if (playerOneValue === playerTwoValue) {
         setMessage("Tie!");
       } else {
-        //TODO this feels unneccesarly complex. I need to look into debugging the card swap logic for calculating winners
-        if (hasSwapped) {
-          if (playerOneValue < playerTwoValue) {
-            setMessage(`${playerNames[0]} Wins!`);
-            setPlayerScore([playerScores[0] + 1, playerScores[1]]);
-          } else if (playerTwoValue < playerOneValue) {
-            setMessage(`${playerNames[1]} Wins!`);
-            setPlayerScore([playerScores[0], playerScores[1] + 1]);
-          }
+        if (playerOneValue > playerTwoValue) {
+          setMessage(`${playerNames[0]} Wins!`);
+          setPlayerScore([playerScores[0] + 1, playerScores[1]]);
         } else {
-          if (playerOneValue > playerTwoValue) {
-            setMessage(`${playerNames[0]} Wins!`);
-            setPlayerScore([playerScores[0] + 1, playerScores[1]]);
-          } else if (playerTwoValue > playerOneValue) {
-            setMessage(`${playerNames[1]} Wins!`);
-            setPlayerScore([playerScores[0], playerScores[1] + 1]);
-          }
+          setMessage(`${playerNames[1]} Wins!`);
+          setPlayerScore([playerScores[0], playerScores[1] + 1]);
         }
       }
       if (deckPosition >= 50) {
@@ -83,7 +75,7 @@ function App() {
           setMessage("Game Over");
           setTurnStep(Steps.NEW_GAME);
           setShowVictoryTile(true);
-        }, 500);
+        }, 1000);
       }
     }
   };
@@ -95,8 +87,10 @@ function App() {
     setTimeout(() => {
       if (playerTurn === 0) {
         setPlayerCards([deck[deckPosition], deck[deckPosition + 1]]);
+        setInitialDeal([deck[deckPosition], deck[deckPosition + 1]]);
       } else {
         setPlayerCards([deck[deckPosition + 1], deck[deckPosition]]);
+        setInitialDeal([deck[deckPosition + 1], deck[deckPosition]]);
       }
       setPlayerTurn(playerTurn === 0 ? 1 : 0);
       setCardFaceDown(true);
@@ -174,14 +168,14 @@ function App() {
             <>
               <CardContainer>
                 <Card
-                  card={playerCards[0]}
+                  card={initialDeal[0]}
                   hide={hideCards}
                   faceDown={cardFaceDown}
                   key={"player1"}
                   swapped={swapped}
                 />
                 <Card
-                  card={playerCards[1]}
+                  card={initialDeal[1]}
                   hide={hideCards}
                   faceDown={cardFaceDown}
                   key={"player2"}
@@ -218,7 +212,12 @@ function App() {
       <ScoreboardSection>
         <PlayerScoreContainer>
           <Player1>
-            <PlayerName onChange={playerOneName} value={playerNames[0]} />
+            <PlayerName
+              onChange={playerOneName}
+              value={playerNames[0]}
+              name="player1"
+              aria-label="Player 1 name input"
+            />
           </Player1>
           <Score>{playerScores[0]}</Score>
         </PlayerScoreContainer>
@@ -235,7 +234,12 @@ function App() {
         <PlayerScoreContainer>
           <Score>{playerScores[1]}</Score>
           <Player2>
-            <PlayerName onChange={playerTwoName} value={playerNames[1]} />
+            <PlayerName
+              onChange={playerTwoName}
+              value={playerNames[1]}
+              name="player2"
+              aria-label="Player 2 name input"
+            />
           </Player2>
         </PlayerScoreContainer>
       </ScoreboardSection>

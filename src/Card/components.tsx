@@ -29,7 +29,7 @@ const Front = styled(BaseCard)`
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23eeeeee' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 `;
 
-const CardNumber = styled.p<{ red: boolean }>`
+const CardNumber = styled.p<{ red: number }>`
   font-family: "TradeWinds";
   font-weight: 600;
   position: absolute;
@@ -67,7 +67,7 @@ const SuitRow = styled.div`
   align-items: center;
 `;
 
-const Suit = styled.div<{ red: boolean }>`
+const Suit = styled.div<{ red: number }>`
   margin: 0 auto;
   font-size: 26px;
   line-height: 30px;
@@ -114,8 +114,8 @@ const King = styled.div`
 `;
 
 interface SwapContainerProps {
-  swapped: boolean;
-  hide: boolean;
+  swapped: number;
+  hide: number;
 }
 
 const SwapContainer = styled.div<SwapContainerProps>`
@@ -148,7 +148,7 @@ const CardFace = ({
             {Array(row)
               .fill("")
               .map((_, j) => (
-                <Suit red={red} key={`suit-${j}`}>
+                <Suit red={red ? 1 : 0} key={`suit-${j}`}>
                   {suit}
                 </Suit>
               ))}

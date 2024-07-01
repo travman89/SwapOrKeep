@@ -20,13 +20,13 @@ const Card = ({
   faceDown: boolean;
   swapped: boolean;
 }) => {
-  const value = (card - 1) % 13;
-  const suit = Math.floor((card - 1) / 13);
+  let value = (card - 1) % 13;
+  let suit = Math.floor((card - 1) / 13);
 
   return (
     <>
       {card && (
-        <SwapContainer swapped={swapped} hide={hide}>
+        <SwapContainer swapped={swapped ? 1 : 0} hide={hide ? 1 : 0}>
           <ReactCardFlip isFlipped={!faceDown} flipDirection="horizontal">
             <Back />
             <Front>
@@ -35,12 +35,12 @@ const Card = ({
                 value={value}
                 red={cardSuits[suit].red}
               />
-              <TopLeft red={cardSuits[suit].red}>
+              <TopLeft red={cardSuits[suit].red ? 1 : 0}>
                 {cardValues[value]}
                 <br />
                 {cardSuits[suit].symbol}
               </TopLeft>
-              <BottomRight red={cardSuits[suit].red}>
+              <BottomRight red={cardSuits[suit].red ? 1 : 0}>
                 {cardSuits[suit].symbol}
                 <br />
                 {cardValues[value]}

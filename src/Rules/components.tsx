@@ -7,7 +7,7 @@ const FullScreen = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@ const ScrollImage = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
   z-index: -1;
   filter: drop-shadow(10px 20px 4px rgba(0, 0, 0, 0.4));
