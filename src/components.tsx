@@ -81,7 +81,7 @@ const TableContainer = styled.div`
     height: auto;
     box-sizing: border-box;
     display: inline-block;
-    margin-top: 105px;
+    margin-top: 100px;
   }
 `;
 
