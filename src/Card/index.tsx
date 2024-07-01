@@ -35,12 +35,12 @@ const Card = ({
                 value={value}
                 red={cardSuits[suit].red}
               />
-              <TopLeft red={cardSuits[suit].red ? 1 : 0}>
+              <TopLeft red={cardSuits[suit].red}>
                 {cardValues[value]}
                 <br />
                 {cardSuits[suit].symbol}
               </TopLeft>
-              <BottomRight red={cardSuits[suit].red ? 1 : 0}>
+              <BottomRight red={cardSuits[suit].red}>
                 {cardSuits[suit].symbol}
                 <br />
                 {cardValues[value]}

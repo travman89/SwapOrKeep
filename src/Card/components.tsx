@@ -138,7 +138,7 @@ const CardFace = ({
 }: {
   suit: string;
   value: number;
-  red: boolean;
+  red: number;
 }) => {
   if (value < 9) {
     return (
@@ -148,7 +148,7 @@ const CardFace = ({
             {Array(row)
               .fill("")
               .map((_, j) => (
-                <Suit red={red ? 1 : 0} key={`suit-${j}`}>
+                <Suit red={red} key={`suit-${j}`}>
                   {suit}
                 </Suit>
               ))}

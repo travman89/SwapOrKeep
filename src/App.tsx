@@ -49,9 +49,9 @@ function App() {
     setPlayerCards([]);
     setInitialDeal([]);
     setDeckPosition(0);
-    setMessage(`${playerNames[0]}'s Turn`);
     setPlayerScore([0, 0]);
     setShowVictoryTile(false);
+    setMessage(`${playerNames[0]}'s Turn`);
     newGame();
   };
 
@@ -81,8 +81,8 @@ function App() {
   };
   const deal = () => {
     setHideCards(true);
-    setTurnStep(Steps.SWAP);
     setHideButtons(true);
+    setTurnStep(Steps.SWAP);
     setMessage(`${playerNames[playerTurn]}'s Turn`);
     setTimeout(() => {
       if (playerTurn === 0) {
@@ -133,11 +133,11 @@ function App() {
     deal();
   }, [deck]);
 
-  const playerOneName = (event: any) => {
+  const playerOneNameChange = (event: any) => {
     setPlayerNames([event.target.value, playerNames[1]]);
   };
 
-  const playerTwoName = (event: any) => {
+  const playerTwoNameChange = (event: any) => {
     setPlayerNames([playerNames[0], event.target.value]);
   };
 
@@ -213,7 +213,7 @@ function App() {
         <PlayerScoreContainer>
           <Player1>
             <PlayerName
-              onChange={playerOneName}
+              onChange={playerOneNameChange}
               value={playerNames[0]}
               name="player1"
               aria-label="Player 1 name input"
@@ -235,7 +235,7 @@ function App() {
           <Score>{playerScores[1]}</Score>
           <Player2>
             <PlayerName
-              onChange={playerTwoName}
+              onChange={playerTwoNameChange}
               value={playerNames[1]}
               name="player2"
               aria-label="Player 2 name input"

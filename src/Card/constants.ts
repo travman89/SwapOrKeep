@@ -1,3 +1,4 @@
+// This is used to build out numbered card faces. The arrays dictate the # of symbols and where to display them on a card face.
 const CardSuitLayout = [
   [1, 0, 0, 1],
   [1, 1, 1],
@@ -11,10 +12,10 @@ const CardSuitLayout = [
 ];
 
 const cardSuits = [
-  { symbol: "♥", red: true },
-  { symbol: "♦", red: true },
-  { symbol: "♠", red: false },
-  { symbol: "♣", red: false },
+  { symbol: "♥", red: 1 },
+  { symbol: "♦", red: 1 },
+  { symbol: "♠", red: 0 },
+  { symbol: "♣", red: 0 },
 ];
 
 const cardValues = [
