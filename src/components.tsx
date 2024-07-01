@@ -9,6 +9,12 @@ const CardContainer = styled.div`
   min-width: 526px;
   min-height: 366px;
   align-items: center;
+
+  @media only screen and (max-width: 639px) {
+    min-width: 370px;
+    min-height: 260px;
+    width: calc(370px);
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -16,6 +22,9 @@ const ButtonContainer = styled.div`
   justify-content: center;
   margin-top: 40px;
   min-height: 50px;
+  @media only screen and (max-width: 639px) {
+    margin-top: 20px;
+  }
 `;
 
 const Button = styled.button`
@@ -45,12 +54,20 @@ const NewGameButton = styled(Button)`
   position: absolute;
   top: 20px;
   right: 10px;
+  @media only screen and (max-width: 639px) {
+    top: 20px;
+    right: 10px;
+  }
 `;
 
 const RulesButton = styled(Button)`
   position: absolute;
   top: 92px;
   right: 10px;
+  @media only screen and (max-width: 639px) {
+    top: 20px;
+    left: 10px;
+  }
 `;
 
 const TableContainer = styled.div`
@@ -60,6 +77,12 @@ const TableContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  @media only screen and (max-width: 639px) {
+    height: auto;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-top: 105px;
+  }
 `;
 
 const Table = styled.div`
@@ -76,6 +99,17 @@ const Table = styled.div`
   justify-content: center;
   background-color: #1f543f;
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%2329654d' fill-opacity='0.34' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+  @media only screen and (max-width: 639px) {
+    width: 100%;
+    max-width: 100%;
+    height: calc(50vh - 100px);
+    border-radius: none;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+  }
 `;
 
 const ScoreboardSection = styled.div`
@@ -84,20 +118,56 @@ const ScoreboardSection = styled.div`
   width: 100%;
   margin-top: 20px;
   position: absolute;
-  width: calc(100%);
-  height: 16vw;
   position: absolute;
   bottom: 0;
   left: 0;
+  box-sizing: border-box;
+  @media only screen and (max-width: 639px) {
+    flex-direction: column;
+  }
+`;
+
+const PlayerScoreContainer = styled.div`
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #5a2801;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='92' viewBox='0 0 112 92'%3E%3Cg fill='%23721e09' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M72 10H40L16 20H0v8h16l24-14h32l24 14h16v-8H96L72 10zm0-8H40L16 4H0v8h16l24-6h32l24 6h16V4H96L72 2zm0 84H40l-24-6H0v8h16l24 2h32l24-2h16v-8H96l-24 6zm0-8H40L16 64H0v8h16l24 10h32l24-10h16v-8H96L72 78zm0-12H40L16 56H0v4h16l24 14h32l24-14h16v-4H96L72 66zm0-16H40l-24-2H0v4h16l24 6h32l24-6h16v-4H96l-24 2zm0-16H40l-24 6H0v4h16l24-2h32l24 2h16v-4H96l-24-6zm0-16H40L16 32H0v4h16l24-10h32l24 10h16v-4H96L72 18z'/%3E%3C/g%3E%3C/svg%3E");
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+
+  @media only screen and (max-width: 639px) {
+    width: calc(100% - 40px);
+    margin: 5px auto;
+    justify-content: space-between;
+    > p {
+      order: 2;
+    }
+    > div {
+      order: 1;
+    }
+    &:first-child {
+      order: 2;
+    }
+    &:last-child {
+      order: 3;
+    }
+  }
 `;
 
 const PlayerSquare = styled.div`
   background-size: cover;
-  height: calc(15vw - 20px);
-  width: calc(15vw - 20px);
+  height: 180px;
+  width: 180px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   position: relative;
+  @media only screen and (max-width: 639px) {
+    width: 120px;
+    height: 80px;
+  }
 `;
 
 const Player1 = styled(PlayerSquare)`
@@ -122,28 +192,35 @@ const PlayerName = styled.input`
   }
   bottom: 0%;
   left: 0;
-`;
-
-const PlayerScoreContainer = styled.div`
-  border-radius: 10px;
-  margin: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #5a2801;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='92' viewBox='0 0 112 92'%3E%3Cg fill='%23721e09' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M72 10H40L16 20H0v8h16l24-14h32l24 14h16v-8H96L72 10zm0-8H40L16 4H0v8h16l24-6h32l24 6h16V4H96L72 2zm0 84H40l-24-6H0v8h16l24 2h32l24-2h16v-8H96l-24 6zm0-8H40L16 64H0v8h16l24 10h32l24-10h16v-8H96L72 78zm0-12H40L16 56H0v4h16l24 14h32l24-14h16v-4H96L72 66zm0-16H40l-24-2H0v4h16l24 6h32l24-6h16v-4H96l-24 2zm0-16H40l-24 6H0v4h16l24-2h32l24 2h16v-4H96l-24-6zm0-16H40L16 32H0v4h16l24-10h32l24 10h16v-4H96L72 18z'/%3E%3C/g%3E%3C/svg%3E");
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  padding: 10px;
+  @media only screen and (max-width: 639px) {
+    font-size: 18px;
+    padding: 2px;
+    width: calc(100% - 4px);
+  }
 `;
 
 const Score = styled.p`
+  all: unset;
   user-select: none;
   font-size: 150px;
-  width: calc(25vh - 10px);
+  margin: 0;
+  width: 220px;
+  height: 180px;
+  max-height: 180px;
+  max-width: 220px;
   text-align: center;
   font-family: "TradeWinds";
   color: #d4af37;
   -webkit-text-stroke: 4px #3c1a00;
+  @media only screen and (max-width: 639px) {
+    font-size: 80px;
+    line-height: 95px;
+    margin: 0;
+    width: 150px;
+    height: 80px;
+    max-height: 80px;
+    max-width: 150px;
+  }
 `;
 
 const MessageContainer = styled.div`
@@ -156,6 +233,13 @@ const MessageContainer = styled.div`
   height: fit-content;
   min-width: 400px;
   max-width: 500px;
+  @media only screen and (max-width: 639px) {
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    min-width: calc(100% - 40px);
+    margin: 5px auto;
+    order: 1;
+  }
 `;
 
 const Message = styled.p`
@@ -169,6 +253,10 @@ const Message = styled.p`
   text-align: center;
   background-color: #000;
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%2329654d' fill-opacity='0.34' fill-rule='evenodd'/%3E%3C/svg%3E");
+  @media only screen and (max-width: 639px) {
+    padding: 5px;
+    font-size: 20px;
+  }
 `;
 
 export {
