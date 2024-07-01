@@ -25,6 +25,16 @@ const RulesContainer = styled.div`
     margin-top: 30px;
     margin-left: 110px;
   }
+  @media only screen and (max-width: 639px) {
+    width: calc(100% - 30px);
+    padding: 30px;
+    height: auto;
+    overflow: scroll;
+    > button {
+      margin: 10px auto;
+      margin-left: 35px;
+    }
+  }
 `;
 
 const ScrollImage = styled.img`
@@ -45,6 +55,10 @@ const RulesHeading = styled.h1`
   padding: 20px;
   margin-left: 110px;
   font-weight: bold;
+  @media only screen and (max-width: 639px) {
+    font-size: 20px;
+    margin-left: 25px;
+  }
 `;
 
 const RulesText = styled.p`
@@ -54,6 +68,11 @@ const RulesText = styled.p`
   color: #5a2801;
   padding: 20px;
   text-align: left;
+  @media only screen and (max-width: 639px) {
+    font-size: 12px;
+    margin-left: 35px;
+    padding: 0px 20px;
+  }
 `;
 
 export { FullScreen, RulesContainer, RulesHeading, RulesText, ScrollImage };
