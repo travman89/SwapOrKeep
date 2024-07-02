@@ -25,7 +25,7 @@ const RulesContainer = styled.div`
     margin-top: 30px;
     margin-left: 110px;
   }
-  @media only screen and (max-width: 639px) {
+  @media only screen and (max-width: 767px) {
     width: calc(100% - 30px);
     padding: 30px;
     height: auto;
@@ -55,7 +55,7 @@ const RulesHeading = styled.h1`
   padding: 20px;
   margin-left: 110px;
   font-weight: bold;
-  @media only screen and (max-width: 639px) {
+  @media only screen and (max-width: 767px) {
     font-size: 20px;
     margin-left: 25px;
   }
@@ -68,7 +68,7 @@ const RulesText = styled.p`
   color: #5a2801;
   padding: 20px;
   text-align: left;
-  @media only screen and (max-width: 639px) {
+  @media only screen and (max-width: 767px) {
     font-size: 12px;
     margin-left: 35px;
     padding: 0px 20px;

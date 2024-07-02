@@ -28,7 +28,7 @@ enum Steps {
 }
 function App() {
   const { deck, newGame } = useDeck();
-  const [deckPosition, setDeckPosition] = useState(0);
+  const [deckPosition, setDeckPosition] = useState(50);
   const [playerTurn, setPlayerTurn] = useState(0);
   const [playerCards, setPlayerCards] = useState<number[]>([]);
   const [hideCards, setHideCards] = useState(true);
@@ -70,7 +70,11 @@ function App() {
           setPlayerScore([playerScores[0], playerScores[1] + 1]);
         }
       }
-      if (deckPosition >= 50) {
+      if (
+        deckPosition >= 50 ||
+        playerScores[0] === 14 ||
+        playerScores[1] === 14
+      ) {
         setTimeout(() => {
           setMessage("Game Over");
           setTurnStep(Steps.NEW_GAME);
