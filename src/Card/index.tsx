@@ -40,7 +40,7 @@ const Card = ({
                 <br />
                 {cardSuits[suit].symbol}
               </TopLeft>
-              <BottomRight red={cardSuits[suit].red}>
+              <BottomRight red={cardSuits[suit].red ? 1 : 0}>
                 {cardSuits[suit].symbol}
                 <br />
                 {cardValues[value]}
